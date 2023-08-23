@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import profile from '@/assets/profile.svg'
+// import profile from '@/assets/profile.svg'
 import {zodResolver} from "@hookform/resolvers/zod"
 // import { userValidation } from "@/lib/validations/user"
 // import {useUploadThing} from '@/lib/uploadthing';
@@ -18,46 +18,45 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import Image from "next/image"
+// import { Input } from "@/components/ui/input"
+// import Image from "next/image"
 // import { ChangeEvent, useState } from "react"
 import { Textarea } from "../ui/textarea"
-// import { isBase64Image } from "@/lib/utils"
-// import { updateUser } from "@/lib/actions/user.actions"
 import { ThreadValidation } from "@/lib/validations/thread"
+import { createThread } from "@/lib/actions/threads.action"
 
 // import React from 'react'
 
 interface Props {
-    user:{
-        id:string,
-        objectId:string,
-        username:string,
-        name:string,
-        bio:string,
-        image:string,
-    },
-    btnTitle:string
+    userId:string,
 }
 
 
 
-export default function PostThread({userId}:{userId:string}) {
+export default function PostThread({userId}:Props) {
 
-  const router=useRouter();
-  const pathname=usePathname();
 
+    
+    const router=useRouter();
+    const pathname=usePathname();
+    
+    const onSubmit=async(values:z.infer<typeof ThreadValidation>)=>{
+        await createThread({
+            text:values.thread,
+            author:userId,
+            communityId:null,
+            path:pathname,
+        })
+        router.push('/')
+    }
   const form=useForm({
     resolver:zodResolver(ThreadValidation),
     defaultValues:{
       thread: "",
-      userId: userId,
+      accountId: userId,
     }
   });
 
-  const onSubmit=async(data:any)=>{
-    console.log(data);
-  }
     return (
         <Form {...form}>
             <form 
