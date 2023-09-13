@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import  User from "../models/user.model"
 import { connectToDatabase } from "../mongoose"
+import Thread from "../models/thread.model";
 
 interface params{
     userId:string,
@@ -51,5 +52,28 @@ export async function fetchUser(userId:string){
         return await User.findOne({id:userId})
     }catch(e:any){
         throw new Error('failed to fetch user form database '+e);
+    }
+}
+
+export async function fetchUserPosts(userId:string){
+    connectToDatabase();
+    try{
+        const threads=await User.findOne({id:userId})
+        .populate({
+            path:'threads',
+            model:Thread,
+            populate:{
+                path:"children",
+                model:Thread,
+                populate:{
+                    path: "author",
+                    model:User,
+                    select:"name image id"
+                }
+            }
+        });
+        return threads;
+    }catch(e:any){
+        throw new Error('failed to fetch user posts '+e);
     }
 }

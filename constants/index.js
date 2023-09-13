@@ -2,7 +2,11 @@ import search from "/assets/search.svg"
 import home from "/assets/home.svg";
 import heart from "/assets/heart.svg";
 import create from "/assets/create.svg";
+import reply from "/assets/reply.svg";
 import community from "/assets/community.svg";
+import request from "/assets/request.svg";
+import members from "/assets/members.svg";
+import tag from "/assets/tag.svg";
 import user from "/assets/user.svg";
 
 export const sidebarLinks = [
@@ -39,13 +43,13 @@ export const sidebarLinks = [
   ];
   
   export const profileTabs = [
-    { value: "threads", label: "Threads", icon: "/assets/reply.svg" },
-    { value: "replies", label: "Replies", icon: "/assets/members.svg" },
-    { value: "tagged", label: "Tagged", icon: "/assets/tag.svg" },
+    { value: "threads", label: "Threads", icon: reply },
+    { value: "replies", label: "Replies", icon: members },
+    { value: "tagged", label: "Tagged", icon: tag },
   ];
   
   export const communityTabs = [
-    { value: "threads", label: "Threads", icon: "/assets/reply.svg" },
-    { value: "members", label: "Members", icon: "/assets/members.svg" },
-    { value: "requests", label: "Requests", icon: "/assets/request.svg" },
+    { value: "threads", label: "Threads", icon: reply },
+    { value: "members", label: "Members", icon: members },
+    { value: "requests", label: "Requests", icon: request },
   ];
