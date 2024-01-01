@@ -28,7 +28,7 @@ export const sidebarLinks = [
     {
       imgURL: create,
       route: "/create-thread",
-      label: "Create Thread",
+      label: "Create Post",
     },
     {
       imgURL: community,

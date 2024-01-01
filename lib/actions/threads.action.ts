@@ -22,11 +22,12 @@ export async function createThread({text,author,communityId,path}:Params){
             text,
             author,
             community:null,
+            path
         });
 
         //update user model
         await User.findByIdAndUpdate(author,{
-            $push:{ thread:createdThread._id }
+            $push:{ threads:createdThread._id }
         })
 
         revalidatePath(path);
