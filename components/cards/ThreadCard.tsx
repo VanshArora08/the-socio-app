@@ -54,7 +54,7 @@ const ThreadCard=({id,currentUser,parentId,content,author,community,createdAt,co
                         <p className="mt-2 text-small-regular text-light-2">
                             {content}
                         </p>
-                        <div className="mt-5 flex flex-col gap-3">
+                        <div className={`${isComment && 'mb-10'}mt-5 flex flex-col gap-3`}>
                             <div className="flex gap-3.5">
                                 <Image src={heartGray} width={24} height={24} className="cursor-pointer object-contain" alt="share"/>
                                 <Image src={share} width={24} height={24} className="cursor-pointer object-contain" alt="like"/>

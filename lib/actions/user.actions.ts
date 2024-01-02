@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import  User from "../models/user.model"
 import { connectToDatabase } from "../mongoose"
 import Thread from "../models/thread.model";
+import { FilterQuery, SortOrder } from "mongoose";
 
 interface params{
     userId:string,
@@ -28,7 +29,7 @@ export async function updateUser(
 
         await User.findOneAndUpdate({id:userId},
         {
-            username: username.toLowerCase,
+            username: username.toLowerCase(),
             name,
             bio,
             image,
@@ -75,5 +76,55 @@ export async function fetchUserPosts(userId:string){
         return threads;
     }catch(e:any){
         throw new Error('failed to fetch user posts '+e);
+    }
+}
+
+export async function fetchUsers({
+    userId,
+    searchTerm="",
+    pageNumber=1,
+    pageSize=20,
+    sortBy="desc"
+ }:{
+        userId:string,
+        searchTerm?:string,
+        pageNumber?:number,
+        pageSize?:number,
+        sortBy?:SortOrder
+ }){
+    try{
+        connectToDatabase();
+
+        const skipAmount=(pageNumber-1)*pageSize;
+
+        const regex=new RegExp(searchTerm,'i');
+
+        const query:FilterQuery<typeof User>={
+            id:{$ne:userId},
+        }
+
+        if(searchTerm.trim()!==''){
+            query.$or=[
+                {username:{$regex:regex}},
+                {name:{$regex:regex}},
+            ]
+        }
+
+        const sortOptions={createdAt:sortBy};
+
+        const users=await User.find(query).sort(sortOptions).skip(skipAmount).limit(pageSize);
+
+        const totalUsers=await User.countDocuments(query);
+
+        const isNext=totalUsers>skipAmount+users.length;
+
+        return {
+            users,
+            isNext,
+        }
+        // const regex=new RegExp(searchTerm,'i');
+        // return await User.find({});
+    }catch(e:any){
+        throw new Error('failed to fetch users '+e);
     }
 }
