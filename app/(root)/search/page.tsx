@@ -1,12 +1,6 @@
 import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs"
 import { redirect } from 'next/navigation'
-import ProfileHeader from "@/components/shared/profileHeader";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { profileTabs } from "@/constants";
-import Image from "next/image";
-// import { TabsContent } from "@radix-ui/react-tabs";
-import ThreadsTab from "@/components/shared/ThreadsTab";
 import UserCard from "@/components/cards/UserCard";
 
 export default async function page() {
