@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 
-interface props {accountId:string,authUserId:string,name:string,username:string,imgUrl:string,bio:string}
+interface props {accountId:string,authUserId:string,name:string,username:string,imgUrl:string,bio:string,type:"User"|"Community"}
 
 export default function profileHeader(
-    {accountId,authUserId,name,username,imgUrl,bio}:props
+    {accountId,authUserId,name,username,imgUrl,bio,type}:props
 ) {
   return (
     <div className='flex w-full flex-col justify-start'>

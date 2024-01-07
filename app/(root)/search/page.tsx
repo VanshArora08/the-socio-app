@@ -14,7 +14,7 @@ export default async function page() {
     // fetch users
     const result=await fetchUsers({
         userId:user.id,
-        searchTerm:"",
+        searchString:"",
         pageNumber:1,
         pageSize:25
     })

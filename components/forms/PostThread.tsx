@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 // import profile from '@/assets/profile.svg'
 import {zodResolver} from "@hookform/resolvers/zod"
+import { useOrganization } from "@clerk/nextjs"
 // import { userValidation } from "@/lib/validations/user"
 // import {useUploadThing} from '@/lib/uploadthing';
 import { usePathname, useRouter } from "next/navigation"
@@ -39,14 +40,25 @@ export default function PostThread({userId}:Props) {
     
     const router=useRouter();
     const pathname=usePathname();
+    const {organization}=useOrganization();
     
     const onSubmit=async(values:z.infer<typeof ThreadValidation>)=>{
-        await createThread({
-            text:values.thread,
-            author:userId,
-            communityId:null,
-            path:pathname,
-        })
+        if(!organization)
+        {
+            await createThread({
+                text:values.thread,
+                author:userId,
+                communityId:null,
+                path:pathname,
+            })
+        }else{
+            await createThread({
+                text:values.thread,
+                author:userId,
+                communityId:organization.id,
+                path:pathname,
+            })
+        }
         router.push('/')
     }
   const form=useForm({
