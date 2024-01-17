@@ -238,3 +238,26 @@ export async function addCommentToThread(
     throw new Error("Unable to add comment");
   }
 }
+
+// like post
+export async function likeThread(threadId: string, userId: string) {
+  connectToDatabase();
+
+  try {
+    // Find the thread by its ID
+    const thread = await Thread.findById(threadId);
+
+    if (!thread) {
+      throw new Error("Thread not found");
+    }
+
+    // Add the user's ID to the thread's likes array
+    thread.likes.push(userId);
+
+    // Save the updated thread to the database
+    await thread.save();
+  } catch (err) {
+    console.error("Error while liking thread:", err);
+    throw new Error("Unable to like thread");
+  }
+}
