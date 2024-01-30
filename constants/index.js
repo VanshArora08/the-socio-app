@@ -43,13 +43,13 @@ export const sidebarLinks = [
   ];
   
   export const profileTabs = [
-    { value: "leaves", label: "Leaves", icon: reply },
+    { value: "leafs", label: "Leafs", icon: reply },
     { value: "replies", label: "Replies", icon: members },
     
   ];
   
   export const communityTabs = [
-    { value: "leaves", label: "Leaves", icon: reply },
+    { value: "leafs", label: "Leafs", icon: reply },
     { value: "members", label: "Members", icon: members },
     
   ];

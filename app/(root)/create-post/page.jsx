@@ -12,7 +12,7 @@ export default async function page() {
     if(!userInfo?.onboarded) redirect('/onboarding');
     return (
         <>
-            <h1 className="head-text">Create Post</h1>
+            <h1 className="head-text">Create Leaf</h1>
             <PostThread userId={userInfo._id}/>
         </>
     )
