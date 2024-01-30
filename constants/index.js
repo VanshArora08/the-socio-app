@@ -27,8 +27,8 @@ export const sidebarLinks = [
     },
     {
       imgURL: create,
-      route: "/create-thread",
-      label: "Create Post",
+      route: "/create-post",
+      label: "Create Leaf",
     },
     {
       imgURL: community,
@@ -43,13 +43,13 @@ export const sidebarLinks = [
   ];
   
   export const profileTabs = [
-    { value: "threads", label: "Threads", icon: reply },
+    { value: "leaves", label: "Leaves", icon: reply },
     { value: "replies", label: "Replies", icon: members },
-    { value: "tagged", label: "Tagged", icon: tag },
+    
   ];
   
   export const communityTabs = [
-    { value: "threads", label: "Threads", icon: reply },
+    { value: "leaves", label: "Leaves", icon: reply },
     { value: "members", label: "Members", icon: members },
-    { value: "requests", label: "Requests", icon: request },
+    
   ];

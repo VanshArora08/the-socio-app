@@ -22,8 +22,7 @@ export default async function page({params}:{params:{id:string}}) {
         name={userInfo.name}
         username={userInfo.username}
         imgUrl={userInfo.image}
-        bio={userInfo.bio}
-      />
+        bio={userInfo.bio} type={"User"}      />
 
       <div className="mt-9">
         <Tabs defaultValue="threads" className="w-full">
@@ -40,7 +39,7 @@ export default async function page({params}:{params:{id:string}}) {
                 <p className="max-sm:hidden">
                   {tab.label}
                 </p>
-                {tab.label==="Threads" && (
+                {tab.label==="Leaves" && (
                   <p className="ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-light-2">
                     {userInfo.threads.length}
                   </p>
