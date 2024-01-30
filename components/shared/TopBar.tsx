@@ -6,7 +6,7 @@ import { SignedIn, SignOutButton,UserButton } from '@clerk/nextjs'
 import { OrganizationSwitcher } from '@clerk/nextjs'
 import { dark } from '@clerk/themes' 
 import logOut from '../../assets/logout.svg'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.svg'
 
 
 export default function TopBar() {
