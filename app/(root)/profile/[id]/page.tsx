@@ -25,7 +25,7 @@ export default async function page({params}:{params:{id:string}}) {
         bio={userInfo.bio} type={"User"}      />
 
       <div className="mt-9">
-        <Tabs defaultValue="threads" className="w-full">
+        <Tabs defaultValue="leafs" className="w-full">
           <TabsList className="tab">
             {profileTabs.map((tab)=>(
               <TabsTrigger key={tab.label} value={tab.value}>
